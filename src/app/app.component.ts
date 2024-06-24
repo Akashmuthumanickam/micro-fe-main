@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit{
     "maxZoom": 18
   };
 
-  @Input() pointDetails: pointDetails[] = [
+  @Input() pointdetails: pointDetails[] = [
     {
       point: [13.053864, 80.170521],
       title: "Job Chennai 1",
@@ -61,7 +61,7 @@ export class AppComponent implements AfterViewInit{
   private map: any;
 
   private initMap(): void {
-    console.log(this.mapinput)
+    console.log(this.pointdetails)
     if(typeof(this.mapinput) === 'string'){
       this.mapinput = JSON.parse(this.mapinput);
     }
@@ -85,7 +85,11 @@ export class AppComponent implements AfterViewInit{
       popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
 
-    this.pointDetails.forEach((point) => {
+    if(typeof(this.pointdetails) === 'string'){
+      this.pointdetails = JSON.parse(this.pointdetails);
+    }
+
+    this.pointdetails.forEach((point) => {
       var latLng = L.latLng(point.point[0], point.point[1]);
       var marker = L.marker(latLng, {icon: locIcon}).addTo(this.map);
       marker.bindPopup(`<h3>${point.title}</h3>${point.description}`).openPopup();
