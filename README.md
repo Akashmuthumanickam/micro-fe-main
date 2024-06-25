@@ -2,26 +2,62 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
-## Development server
+## This project will create an angular web component for Map tiles.
+# To use this Angular web component,
+Run `ng run bundle`. This will generate a file named 'micro-fe.js' under the dist folder. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# To use the bundle in react application,
+1. Copy the js file from Angular and paste it under PUBLIC directory.
+2. In index.js, add that js file path in the script tag.
+3. In your component, add the map tag. 
+4. Run the application.
 
-## Code scaffolding
+## Eg React Code,
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```javascript
+import "./styles.css";
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+export const MapMainPage = () => {
+    return (
+        <div style={{marginTop: "20px"}}>
+            <app-micro-fe mapinput={JSON.stringify({
+                center: [13.070731751290195, 80.21947766527167],
+                zoom: 13,
+                minZoom: 0,
+                maxZoom: 15
+                })}
+                pointDetails={JSON.stringify([
+                    {
+                      point: [13.053864, 80.170521],
+                      title: "Job Survey 1",
+                      description: "A general description 1"
+                    },
+                    {
+                      point: [13.057762, 80.218938],
+                      title: "Job Survey 2",
+                      description: "A general description 2"
+                    },
+                    {
+                      point: [13.081928, 80.205066],
+                      title: "Job Survey 3",
+                      description: "A general description 3"
+                    },
+                    {
+                      point: [13.059841, 80.231342],
+                      title: "Job Survey 4",
+                      description: "A general description 4"
+                    },
+                    {
+                      point: [13.082838, 80.139977],
+                      title: "Job Survey 5",
+                      description: "A general description 5"
+                    }
+                  ])
+                }
+            ></app-micro-fe>
+            <hr />
+        </div>
+    )
+}
+```
+You can see that attribute values are converted to string as Html attributes supports only string type.
